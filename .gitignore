@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment — NEVER commit real keys
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.idea/
+.vscode/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+storage.rules.draft
+
+# Misc
+*.log

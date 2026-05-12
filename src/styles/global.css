@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  color: #111111;
+  background: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────────────── */
+.nav-lnk {
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+.nav-lnk:hover { color: #111; }
+
+/* ── Projects ────────────────────────────────────────────────────────────── */
+.proj-img  { transition: transform 0.5s ease; }
+.proj-card:hover .proj-img { transform: scale(1.04); }
+
+/* ── Skill tags ──────────────────────────────────────────────────────────── */
+.skill-tag {
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #6b7280;
+  background: #fff;
+  cursor: default;
+  transition: all 0.2s;
+}
+.skill-tag:hover { background: #0d7377; color: #fff; border-color: #0d7377; }
+
+/* ── Services pill ───────────────────────────────────────────────────────── */
+.svc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 10px 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 500;
+  background: #fff;
+  cursor: default;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+.svc-pill:hover { background: #0d7377; color: #fff; border-color: #0d7377; }
+
+/* ── Process steps ───────────────────────────────────────────────────────── */
+.step-card {
+  border: 1px solid #f3f4f6;
+  border-radius: 20px;
+  padding: 32px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+.step-card:hover {
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  border-color: rgba(13,115,119,0.2);
+}
+
+/* ── Experience timeline ─────────────────────────────────────────────────── */
+.tl-card {
+  background: #fafafa;
+  border-radius: 16px;
+  padding: 24px 28px;
+  border: 1px solid #f3f4f6;
+  transition: box-shadow 0.2s;
+}
+.tl-item:hover .tl-card { box-shadow: 0 8px 32px rgba(13,115,119,0.1); }
+
+/* ── Marquee ─────────────────────────────────────────────────────────────── */
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.marquee-wrap { overflow: hidden; }
+.marquee-track     { display: flex; animation: marquee 30s linear infinite; }
+.marquee-track-rev { display: flex; animation: marquee 34s linear infinite reverse; }
+.marquee-wrap:hover .marquee-track,
+.marquee-wrap:hover .marquee-track-rev { animation-play-state: paused; }
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Download / CTA button ───────────────────────────────────────────────── */
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0d7377;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+.dl-btn:hover { opacity: 0.88; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .desk-nav   { display: none !important; }
+  .mob-btn    { display: flex !important; }
+  .two-col    { grid-template-columns: 1fr !important; }
+  .proj-grid  { grid-template-columns: 1fr !important; }
+  .step-grid  { grid-template-columns: 1fr !important; }
+  .skill-grid { grid-template-columns: 1fr !important; }
+}
