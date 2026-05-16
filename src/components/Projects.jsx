@@ -3,10 +3,10 @@ const mid = "#9ca3af";
 
 export default function Projects({ data }) {
   return (
-    <section id="projects" style={{ padding: "100px 40px", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+    <section id="projects" style={{ padding: "clamp(60px,8vw,100px) clamp(20px,5vw,40px)", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <p style={{ textAlign: "center", fontSize: 14, color: mid, marginBottom: 20 }}>Portfolio</p>
-        <h2 style={{ textAlign: "center", fontFamily: "'Playfair Display', serif", fontSize: "clamp(30px,4vw,54px)", fontWeight: 700, color: dark, marginBottom: 64 }}>
+        <h2 style={{ textAlign: "center", fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,4vw,54px)", fontWeight: 700, color: dark, marginBottom: 64 }}>
           {data.projects.heading}
         </h2>
         <div className="proj-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
@@ -33,7 +33,7 @@ export default function Projects({ data }) {
                     </div>
                   )}
                 </div>
-                <h3 style={{ fontSize: 18, fontWeight: 600, color: dark, marginBottom: 5 }}>
+                <h3 style={{ fontSize: "clamp(15px,1.6vw,18px)", fontWeight: 600, color: dark, marginBottom: 5 }}>
                   {p.title}
                   {p.link && <span style={{ fontSize: 14, marginLeft: 8, color: "rgba(255,255,255,0.5)" }}>↗</span>}
                 </h3>

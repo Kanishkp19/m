@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 const teal = "#0d7377";
-const dark = "#111111";
 
 // ── Tilt card wrapper ──────────────────────────────────────────────────────
 function TiltCard({ children }) {
@@ -63,21 +62,21 @@ export default function About({ data, onResumeDownload }) {
     <section id="about" ref={sectionRef} style={{ background: "transparent", overflow: "hidden" }}>
 
       {/* ── Main grid ──────────────────────────────────────────────────── */}
-      <div style={{
+      <div className="about-grid two-col" style={{
         maxWidth: 1280,
         margin: "0 auto",
-        padding: "160px 40px 100px",
         display: "grid",
         gridTemplateColumns: "5fr 6fr",
         gap: "0 80px",
         alignItems: "center",
-      }} className="two-col">
+      }}>
 
         {/* ── LEFT: TEXT ──────────────────────────────────────────────── */}
         <motion.div
           variants={container}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
+          className="about-left-col"
           style={{ position: "sticky", top: 100 }}
         >
           {/* Eyebrow */}
@@ -89,7 +88,7 @@ export default function About({ data, onResumeDownload }) {
           {/* Heading */}
           <motion.h2 variants={item} style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(42px, 5vw, 68px)",
+            fontSize: "clamp(36px, 5vw, 68px)",
             fontWeight: 700,
             lineHeight: 1.1,
             color: "#ffffff",
@@ -124,7 +123,7 @@ export default function About({ data, onResumeDownload }) {
 
           {/* Bio */}
           <motion.p variants={item} style={{
-            fontSize: 17,
+            fontSize: "clamp(15px, 1.6vw, 17px)",
             color: "#9ca3af",
             lineHeight: 1.8,
             marginBottom: 52,
@@ -140,7 +139,7 @@ export default function About({ data, onResumeDownload }) {
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: 24,
-                padding: "36px 32px",
+                padding: "clamp(20px, 3vw, 36px) clamp(16px, 2.5vw, 32px)",
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 position: "relative",
@@ -148,30 +147,30 @@ export default function About({ data, onResumeDownload }) {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
-                minHeight: 180,
+                minHeight: "clamp(120px, 15vw, 180px)",
               }}>
                 <div style={{ position: "absolute", top: -30, right: -20, width: 100, height: 100, borderRadius: "50%", background: "rgba(255,255,255,0.02)" }} />
-                <div style={{ 
-                  height: 64,
+                <div style={{
+                  height: "clamp(40px, 8vw, 64px)",
                   display: "flex",
                   alignItems: "baseline",
                   marginBottom: 12,
                 }}>
-                  <span style={{ 
-                    fontSize: 64, 
-                    fontWeight: 700, 
-                    lineHeight: 1, 
-                    color: "#ffffff", 
+                  <span style={{
+                    fontSize: "clamp(38px, 7vw, 64px)",
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    color: "#ffffff",
                     fontFamily: "'Playfair Display', serif",
                   }}>
                     {s.value}
                   </span>
                 </div>
-                <div style={{ 
-                  fontSize: 12, 
-                  color: "#9ca3af", 
-                  letterSpacing: "0.1em", 
-                  fontWeight: 600, 
+                <div style={{
+                  fontSize: "clamp(10px, 1.2vw, 12px)",
+                  color: "#9ca3af",
+                  letterSpacing: "0.1em",
+                  fontWeight: 600,
                   textTransform: "uppercase",
                 }}>{s.label}</div>
               </div>
@@ -361,6 +360,18 @@ export default function About({ data, onResumeDownload }) {
         .about-marquee-track {
           display: flex;
           white-space: nowrap;
+        }
+        .about-grid {
+          padding: clamp(80px, 12vw, 160px) clamp(20px, 5vw, 40px) clamp(60px, 8vw, 100px);
+        }
+        @media (max-width: 768px) {
+          .about-left-col {
+            position: static !important;
+          }
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
+          }
         }
         @keyframes aboutPulse {
           0%, 100% { transform: scale(1); opacity: 0.6; }

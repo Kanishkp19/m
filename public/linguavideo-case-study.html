@@ -207,7 +207,7 @@
   @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
   .insight-quote {
     border-left: 3px solid var(--indigo); padding: 14px 20px;
-    background: var(--indigo-soft); border-radius: 0 10px 10px 0; margin: 16px 0;
+    background: rgba(99, 102, 241, 0.1); border-radius: 0 10px 10px 0; margin: 16px 0;
   }
   .insight-quote p { color: var(--ink-2); font-style: italic; font-size: 14px; line-height: 1.7; }
   .insight-source { font-family: var(--mono); font-size: 11px; color: var(--ink-4); margin-top: 6px; font-style: normal; display: block; }
@@ -330,13 +330,83 @@
 
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
-    .hero { padding: 64px 24px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex !important; }
+    .hero { padding: 64px 20px 56px; }
     .page { padding: 0 20px; }
     .lofi-grid { grid-template-columns: 1fr 1fr; }
     .outcomes-grid { grid-template-columns: 1fr 1fr; }
     .process-steps { grid-template-columns: repeat(3, 1fr); }
     .ds-grid { grid-template-columns: 1fr; }
+    .ds-card[style*="grid-column: span 2"] { grid-column: span 1 !important; }
     .process-details { grid-template-columns: 1fr; }
+    .meta-strip { width: 100%; border-radius: 12px; }
+    .meta-item { flex: 1 1 45%; }
+    .hmw { padding: 24px 20px; }
+    .hmw p { font-size: 17px; }
+    .two-col { grid-template-columns: 1fr; }
+    .footer { padding: 32px 20px; }
+    section { padding: 56px 0; }
+  }
+  @media (max-width: 480px) {
+    .lofi-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .problem-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: clamp(32px, 9vw, 52px); }
+  }
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .nav-mobile-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(11,11,13,0.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .nav-mobile-drawer.open { display: flex; }
+  .nav-mobile-drawer a, .nav-mobile-drawer button {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--sans);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-mobile-drawer a:hover { color: var(--indigo); }
+  .drawer-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--ink);
   }
 </style>
 </head>
@@ -359,6 +429,9 @@
     <li><a href="#hifi">Hi-fi</a></li>
   </ul>
   <a class="nav-cta" href="/">✏ Back to Portfolio</a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -1012,8 +1085,19 @@
 <!-- ── FOOTER ── -->
 <div class="footer">
   <p style="font-weight:600;font-size:14px;color:var(--ink-2);margin-bottom:6px;">LinguaVideo — Multilingual Video Localisation Platform · Case Study</p>
-  <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.05em;">🎬 SaaS · Video Localisation · EdTech · All data and project names shown are fictional</p>
+  <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.05em;"></p>
   <p style="margin-top:12px;"><a href="#">← Back to Mansi Pandey's Portfolio</a></p>
+</div>
+
+<!-- ── Mobile Nav Drawer ── -->
+<div class="nav-mobile-drawer" id="nav-drawer">
+  <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
+  <a href="#design-system" onclick="closeDrawer()">Design System</a>
+  <a href="#problem" onclick="closeDrawer()">Problem</a>
+  <a href="#process" onclick="closeDrawer()">Process</a>
+  <a href="#userflow" onclick="closeDrawer()">User Flow</a>
+  <a href="#hifi" onclick="closeDrawer()">Hi-fi</a>
+  <a href="/" style="margin-top:16px;background:var(--indigo);color:#fff;padding:12px 32px;border-radius:8px;font-size:16px;">✏ Back to Portfolio</a>
 </div>
 
 <script>
@@ -1021,6 +1105,11 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function openDrawer() { document.getElementById('nav-drawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { document.getElementById('nav-drawer').classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('nav-hamburger').addEventListener('click', openDrawer);
+  document.getElementById('drawer-close').addEventListener('click', closeDrawer);
 </script>
 </body>
 </html>

@@ -35,8 +35,8 @@ export default function BeyondWork() {
   const marqueeImages2 = [...images.slice(10), ...images.slice(10)];
 
   return (
-    <section id="beyond-work" style={{ padding: "100px 0", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px", marginBottom: 56 }}>
+    <section id="beyond-work" style={{ padding: "clamp(60px,8vw,100px) 0", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5vw,40px)", marginBottom: 56 }}>
         <h2 style={{ 
           fontFamily: "'Playfair Display', serif", 
           fontSize: "clamp(28px, 3.8vw, 52px)", 
@@ -71,8 +71,8 @@ export default function BeyondWork() {
               key={idx} 
               style={{ 
                 flexShrink: 0, 
-                width: "clamp(250px, 25vw, 400px)", 
-                height: "clamp(180px, 18vw, 300px)", 
+                width: "clamp(160px, 38vw, 400px)", 
+                height: "clamp(130px, 25vw, 300px)", 
                 borderRadius: 20, 
                 overflow: "hidden",
                 border: "1px solid #f3f4f6",
@@ -115,8 +115,8 @@ export default function BeyondWork() {
               key={idx} 
               style={{ 
                 flexShrink: 0, 
-                width: "clamp(250px, 25vw, 400px)", 
-                height: "clamp(180px, 18vw, 300px)", 
+                width: "clamp(160px, 38vw, 400px)", 
+                height: "clamp(130px, 25vw, 300px)", 
                 borderRadius: 20, 
                 overflow: "hidden",
                 border: "1px solid #f3f4f6",

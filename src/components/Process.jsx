@@ -1,13 +1,12 @@
-const teal = "#9ca3af";
 const dark = "#ffffff";
 const mid = "#9ca3af";
 
 export default function Process({ data }) {
   return (
-    <section id="process" style={{ padding: "100px 40px", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+    <section id="process" style={{ padding: "clamp(60px,8vw,100px) clamp(20px,5vw,40px)", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <p style={{ textAlign: "center", fontSize: 14, color: mid, marginBottom: 20 }}>How it works</p>
-        <h2 style={{ textAlign: "center", fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,3.8vw,52px)", fontWeight: 700, lineHeight: 1.2, color: dark, marginBottom: 64, whiteSpace: "pre-line" }}>
+        <h2 style={{ textAlign: "center", fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px,3.8vw,52px)", fontWeight: 700, lineHeight: 1.2, color: dark, marginBottom: 64, whiteSpace: "pre-line" }}>
           {data.process.heading}
         </h2>
         <div

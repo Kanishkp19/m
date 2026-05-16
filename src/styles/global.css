@@ -104,6 +104,23 @@ body {
   border-color: rgba(255,255,255,0.15);
 }
 
+/* ── Wobble Grid ─────────────────────────────────────────────────────────── */
+.wobble-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.wobble-card-1 {
+  grid-column: span 2;
+}
+.wobble-card-2 {
+  grid-column: span 1;
+}
+.wobble-card-3 {
+  grid-column: span 3;
+}
+
+
 /* ── Experience timeline ─────────────────────────────────────────────────── */
 .tl-card {
   background: rgba(255,255,255,0.02);
@@ -205,6 +222,7 @@ body {
 
   .two-col {
     grid-template-columns: 1fr !important;
+    gap: 48px !important;
   }
 
   .proj-grid {
@@ -212,11 +230,49 @@ body {
   }
 
   .step-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr 1fr !important;
   }
 
   .skill-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  /* ── Section padding ── */
+  .section-pad {
+    padding: 60px 20px !important;
+  }
+
+  /* ── Timeline ── */
+  .tl-card {
+    padding: 18px 16px !important;
+  }
+
+  /* ── Tools section ── */
+  .tools-section {
+    padding: 60px 20px !important;
+  }
+
+  /* ── Wobble grid ── */
+  .wobble-grid {
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* ── Step grid to single col on phones ── */
+  .step-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Nav padding ── */
+  nav {
+    padding: 0 16px !important;
+  }
+
+  /* ── Stat cards: compress on small screens ── */
+  .about-stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
   }
 }
 

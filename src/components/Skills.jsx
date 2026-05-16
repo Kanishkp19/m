@@ -14,12 +14,12 @@ export default function Skills({ data }) {
   ];
 
   return (
-    <section id="skills" style={{ padding: "100px 40px", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+    <section id="skills" style={{ padding: "clamp(60px,8vw,100px) clamp(20px,5vw,40px)", background: "transparent", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px,3vw,40px)", fontWeight: 700, color: "#ffffff", marginBottom: 52 }}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(24px,3vw,40px)", fontWeight: 700, color: "#ffffff", marginBottom: 52 }}>
           {data.skills.heading}
         </h2>
-        
+
         <div className="wobble-grid">
           {/* Card 1: UX Skills (Spans 2 columns if screen is wide enough) */}
           <div className="wobble-card-1">

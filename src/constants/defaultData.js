@@ -1,5 +1,5 @@
 export const defaultData = {
-  hero: { tagline: "Designing user-first digital experiences that scale." },
+  hero: { tagline: "Human-first design. \n Business-aligned impact. " },
   about: {
     name: "Mansi Pandey",
     location: "Jaipur, Rajasthan · IST",
@@ -68,7 +68,7 @@ export const defaultData = {
   },
   contact: {
     heading: "Let's Work Together",
-    subheading: "Available for full-time roles & select freelance projects.",
+    subheading: "Great design begins with great collaboration",
     email: "mansipandey725@gmail.com",
     linkedin: "https://www.linkedin.com/in/mansi-pandey-17b1521a4/",
     phone: "",
