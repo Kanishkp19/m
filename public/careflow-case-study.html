@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareFlow — Case Study · Mansi Pandey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0E9B8B;
+    --teal-dark: #0B7A6D;
+    --teal-soft: #E6F7F5;
+    --teal-mid: #B2E8E2;
+    --ink: #ffffff;
+    --ink-2: #e5e7eb;
+    --ink-3: #9ca3af;
+    --ink-4: #6b7280;
+    --surface: #131316;
+    --bg: #0b0b0d;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-2: rgba(255, 255, 255, 0.15);
+    --amber: #D97706;
+    --amber-soft: #FEF3C7;
+    --red: #DC2626;
+    --red-soft: #FEE2E2;
+    --green: #16A34A;
+    --green-soft: #DCFCE7;
+    --purple: #7C3AED;
+    --purple-soft: #EDE9FE;
+    --blue: #1C6EF2;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Playfair Display', serif;
+    --sans: 'DM Sans', sans-serif;
+    --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.10);
+    --radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11, 11, 13, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; color: #fff; letter-spacing: 0.03em;
+  }
+  .nav-name { font-weight: 600; font-size: 14px; color: var(--ink); }
+  .nav-loc { font-size: 11px; color: var(--ink-4); }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--ink-3); text-decoration: none; transition: color 0.15s; font-weight: 400; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal); color: #fff; border: none; border-radius: 8px;
+    padding: 7px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+    font-family: var(--sans); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--teal-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    background: #0b0b0d;
+    padding: 100px 56px 90px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 25% 50%, rgba(14,155,139,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(28,110,242,0.2) 0%, transparent 45%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.07;
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.12);
+    margin-bottom: 6px;
+  }
+  .hero h1 .accent { color: rgba(255,255,255,0.7); font-style: italic; }
+  .hero-sub {
+    font-size: 18px; color: rgba(255,255,255,0.8); max-width: 580px;
+    line-height: 1.7; margin-bottom: 40px; font-weight: 300;
+  }
+  .hero-sub strong { color: #fff; font-weight: 600; }
+  .meta-strip {
+    display: flex; flex-wrap: wrap; gap: 0;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px; overflow: hidden; width: fit-content;
+  }
+  .meta-item {
+    padding: 14px 24px; display: flex; flex-direction: column; gap: 3px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .meta-item:last-child { border-right: none; }
+  .meta-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .meta-value { font-size: 13px; font-weight: 600; color: #fff; }
+
+  /* ── PAGE WRAP ── */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 20px; height: 1.5px; background: var(--teal); display: block;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15; margin-bottom: 18px; color: var(--ink);
+  }
+  h2 em { font-style: italic; color: var(--teal); }
+  h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  p { color: var(--ink-3); line-height: 1.8; margin-bottom: 14px; font-size: 15px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Highlight keywords */
+  .hl { color: var(--ink); font-weight: 600; }
+  .hl-teal { color: var(--teal); font-weight: 600; }
+
+  /* ── DESIGN SYSTEM ── */
+  .ds-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 32px; }
+  .ds-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px; transition: box-shadow 0.2s;
+  }
+  .ds-card:hover { box-shadow: var(--shadow-lg); }
+  .ds-card-label {
+    font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--ink-4); margin-bottom: 16px;
+  }
+  .swatches { display: flex; gap: 7px; margin-bottom: 8px; }
+  .swatch { width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.07); }
+  .color-group-label { font-size: 11px; color: var(--ink-4); font-family: var(--mono); margin-bottom: 7px; margin-top: 12px; }
+  .font-sample { font-size: 20px; line-height: 1.25; margin-bottom: 4px; }
+  .type-detail { font-family: var(--mono); font-size: 10px; color: var(--ink-4); letter-spacing: 0.04em; }
+  .divider { height: 1px; background: var(--border); margin: 12px 0; }
+  .spacing-row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+  .spacing-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .spacing-bar { background: var(--teal-soft); border: 1.5px solid var(--teal-mid); border-radius: 4px; width: 28px; }
+  .spacing-label { font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+  .comp-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; font-family: var(--sans); cursor: pointer; width: fit-content; border: none; margin-bottom: 8px; }
+  .comp-btn-primary { background: var(--teal); color: #fff; }
+  .comp-btn-secondary { background: var(--surface); color: var(--ink-2); border: 1px solid var(--border-2) !important; }
+  .comp-btn-danger { background: var(--red-soft); color: var(--red); }
+  .component-preview { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+  .badge-ds {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 600; font-family: var(--sans);
+  }
+  .badge-green { background: var(--green-soft); color: #166534; }
+  .badge-warn  { background: var(--amber-soft); color: #92400E; }
+  .badge-red   { background: var(--red-soft);   color: #991B1B; }
+  .badge-teal  { background: var(--teal-soft);  color: var(--teal-dark); }
+  .icon-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .icon-chip {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 12px; font-size: 12px; color: var(--ink-2); display: flex; align-items: center; gap: 6px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── PROBLEM ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+  .insight-quote {
+    border-left: 3px solid var(--teal); padding: 14px 20px;
+    background: var(--teal-soft); border-radius: 0 10px 10px 0; margin: 16px 0;
+  }
+  .insight-quote p { color: var(--ink-2); font-style: italic; font-size: 14px; line-height: 1.7; }
+  .insight-source { font-family: var(--mono); font-size: 11px; color: var(--ink-4); margin-top: 6px; font-style: normal; display: block; }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+  @media (max-width: 640px) { .problem-grid { grid-template-columns: 1fr; } }
+  .problem-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; transition: box-shadow 0.2s;
+  }
+  .problem-card:hover { box-shadow: var(--shadow-lg); }
+  .problem-card.highlight { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.3); }
+  .problem-icon { font-size: 22px; margin-bottom: 12px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tag {
+    display: inline-block; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 9px; font-size: 11px; color: var(--ink-3); font-family: var(--mono);
+  }
+  .hmw {
+    background: linear-gradient(135deg, #1f1f2e 0%, #1a1a24 20%, #15151d 40%, #111118 60%, #0d0d12 80%, #0b0b0d 100%);
+    border: 1.5px solid var(--teal-mid); border-radius: var(--radius);
+    padding: 36px 40px; margin-top: 32px;
+  }
+  .hmw-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .hmw p { font-family: var(--serif); font-size: 21px; font-style: italic; color: var(--teal-dark); line-height: 1.6; margin: 0; }
+
+  /* ── PROCESS ── */
+  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 40px; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 19px; left: calc(10% + 8px); width: calc(80% - 16px); height: 1.5px; background: var(--border-2); z-index: 0; }
+  .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 8px; position: relative; z-index: 1; }
+  .step-dot {
+    width: 38px; height: 38px; border-radius: 50%; background: var(--surface);
+    border: 2px solid var(--border-2); display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--ink-3); margin-bottom: 12px;
+  }
+  .step-dot.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+  .step-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .step-sub { font-size: 11px; color: var(--ink-4); }
+  .process-details { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+  .process-detail {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+  }
+  .process-detail h3 { font-size: 14px; margin-bottom: 10px; }
+  .process-detail ul { padding-left: 16px; color: var(--ink-3); font-size: 13px; line-height: 2; }
+
+  /* ── USER FLOW ── */
+  .flow-container {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px; margin-top: 32px; overflow-x: auto;
+  }
+  .flow-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 16px; }
+
+  /* ── LO-FI ── */
+  .lofi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+  .lofi-frame { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .lofi-titlebar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 12px; display: flex; align-items: center; gap: 5px; }
+  .dot-row { display: flex; gap: 4px; }
+  .dot-row span { width: 8px; height: 8px; border-radius: 50%; background: var(--border-2); }
+  .lofi-screen { padding: 12px; }
+  .lofi-bar { height: 8px; border-radius: 3px; background: var(--border); margin-bottom: 7px; }
+  .lofi-bar.short { width: 40%; }
+  .lofi-bar.med { width: 65%; }
+  .lofi-bar.full { width: 100%; }
+  .lofi-box { border-radius: 5px; background: var(--border); margin-bottom: 7px; }
+  .lofi-row { display: flex; gap: 5px; margin-bottom: 7px; }
+  .lofi-row .lofi-bar { margin-bottom: 0; flex: 1; }
+
+  /* ── SCREENSHOT PLACEHOLDER ── */
+  .screen-wrap {
+    background: #1E2025; border-radius: 14px; margin: 36px 0;
+    overflow: hidden; box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .screen-chrome {
+    background: #2A2D35; padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .chrome-bar {
+    flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px;
+    padding: 4px 12px; font-family: var(--mono); font-size: 11px;
+    color: rgba(255,255,255,0.35); margin: 0 12px;
+  }
+  /* ↓↓↓ THE PLACEHOLDER ZONE — replace src="" with your screenshot path */
+  .screen-img {
+    width: 100%; display: block;
+    min-height: 300px;
+    background: #111115; /* fallback bg while image loads */
+    object-fit: cover;
+  }
+  .screen-placeholder {
+    min-height: 340px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    background: #111115; border-top: 1px solid rgba(255,255,255,0.05);
+    color: #6b7280; font-family: var(--mono); font-size: 13px;
+  }
+  .screen-placeholder-icon { font-size: 32px; opacity: 0.4; }
+  .screen-caption {
+    text-align: center; margin-top: -4px; margin-bottom: 36px;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-4);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  .outcome-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 24px; text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .outcome-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .outcome-num {
+    font-family: var(--serif); font-size: 44px; color: var(--teal);
+    line-height: 1; margin-bottom: 10px; font-weight: 900;
+  }
+  .outcome-label { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 48px 56px; text-align: center;
+    color: var(--ink-4); font-size: 13px;
+    border-top: 1px solid var(--border); background: var(--bg);
+  }
+  .footer a { color: var(--teal); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 64px 24px; }
+    .page { padding: 0 20px; }
+    .lofi-grid { grid-template-columns: 1fr 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: repeat(3, 1fr); }
+    .ds-grid { grid-template-columns: 1fr; }
+    .process-details { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-avatar">MP</div>
+    <div>
+      <div class="nav-name">Mansi Pandey</div>
+      <div class="nav-loc">Jaipur, Rajasthan · IST</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#design-system">Design System</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#userflow">User Flow</a></li>
+    <li><a href="#hifi">Hi-fi</a></li>
+  </ul>
+  <a class="nav-cta" href="/">✏ Back to Portfolio</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">💙 Healthcare SaaS · AI-Enhanced Referral Management</div>
+    <h1>CareFlow <span class="accent">Health Platform</span></h1>
+    <p class="hero-sub">
+      An <strong>automation-first</strong> referral management system — intelligently bridging the gap between patient intake and home infusion, eliminating chaos one workflow at a time.
+    </p>
+    <div class="meta-strip">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Lead Product Designer</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Platform</span>
+        <span class="meta-value">Web · Desktop SaaS</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Domain</span>
+        <span class="meta-value">Home Infusion · Clinical Ops</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Tools</span>
+        <span class="meta-value">Figma · FigJam · Maze</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ══════════ 01: DESIGN SYSTEM ══════════ -->
+<section id="design-system" class="fade-up">
+  <div class="section-eyebrow">01 / Design System</div>
+  <h2>Building a <em>consistent</em>, accessible foundation</h2>
+  <p>
+    CareFlow's design system was engineered for <span class="hl">clinicians, financial coordinators, and supervisors</span> navigating high-stress, data-dense workflows. Every token was chosen for <span class="hl-teal">legibility, calm authority, and ADA compliance</span>. The teal brand color communicates health, trust, and clarity — a deliberate departure from cold, institutional blues.
+  </p>
+
+  <div class="ds-grid">
+
+    <div class="ds-card" style="grid-column: span 2;">
+      <div class="ds-card-label">Color Palette</div>
+      <div>
+        <div class="color-group-label">Primary — Teal Brand</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#0E9B8B;" title="#0E9B8B"></div>
+          <div class="swatch" style="background:#0B7A6D;" title="#0B7A6D"></div>
+          <div class="swatch" style="background:#E6F7F5;" title="#E6F7F5"></div>
+          <div class="swatch" style="background:#B2E8E2;" title="#B2E8E2"></div>
+        </div>
+        <div class="color-group-label">Semantic States</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#16A34A;" title="Success"></div>
+          <div class="swatch" style="background:#D97706;" title="Warning"></div>
+          <div class="swatch" style="background:#DC2626;" title="Danger"></div>
+          <div class="swatch" style="background:#7C3AED;" title="AI/ML"></div>
+        </div>
+        <div class="color-group-label">Neutrals</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#111827;"></div>
+          <div class="swatch" style="background:#374151;"></div>
+          <div class="swatch" style="background:#9CA3AF;"></div>
+          <div class="swatch" style="background: var(--surface);"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-label">Typography</div>
+      <div class="font-sample" style="font-family:'Playfair Display';font-size:22px;">CareFlow Platform</div>
+      <div class="type-detail">Playfair Display · Headings</div>
+      <div class="divider"></div>
+      <div class="font-sample" style="font-family:'DM Sans';font-size:15px;font-weight:600;">Patient Queue — 4 pending</div>
+      <div class="type-detail">DM Sans SemiBold · UI Labels</div>
+      <div class="divider"></div>
+      <div class="font-sample" style="font-family:'JetBrains Mono';font-size:13px;">MRN-82471 · 14h 32m</div>
+      <div class="type-detail">JetBrains Mono · Data · IDs · Code</div>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-label">Spacing Scale (4pt base)</div>
+      <div class="spacing-row">
+        <div class="spacing-block"><div class="spacing-bar" style="height:4px;"></div><span class="spacing-label">4</span></div>
+        <div class="spacing-block"><div class="spacing-bar" style="height:8px;"></div><span class="spacing-label">8</span></div>
+        <div class="spacing-block"><div class="spacing-bar" style="height:12px;"></div><span class="spacing-label">12</span></div>
+        <div class="spacing-block"><div class="spacing-bar" style="height:16px;"></div><span class="spacing-label">16</span></div>
+        <div class="spacing-block"><div class="spacing-bar" style="height:24px;"></div><span class="spacing-label">24</span></div>
+        <div class="spacing-block"><div class="spacing-bar" style="height:32px;"></div><span class="spacing-label">32</span></div>
+        <div class="spacing-block"><div class="spacing-bar" style="height:48px;"></div><span class="spacing-label">48</span></div>
+      </div>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-label">Buttons</div>
+      <div class="component-preview">
+        <button class="comp-btn comp-btn-primary">✓ Mark Complete</button>
+        <button class="comp-btn comp-btn-secondary">Reassign Case</button>
+        <button class="comp-btn comp-btn-danger">✕ Deny</button>
+      </div>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-label">Status Badges</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+        <span class="badge-ds badge-green">✓ Auto-Approved</span>
+        <span class="badge-ds badge-warn">⚠ Pending Auth</span>
+        <span class="badge-ds badge-red">● BI Failed</span>
+        <span class="badge-ds badge-teal">✨ AI Insight</span>
+      </div>
+    </div>
+
+    <div class="ds-card" style="grid-column: span 2;">
+      <div class="ds-card-label">Role-coded Queue Icons</div>
+      <div class="icon-grid">
+        <div class="icon-chip"><div class="dot" style="background:var(--teal);"></div>💰 Financial Queue</div>
+        <div class="icon-chip"><div class="dot" style="background:#7C3AED;"></div>🩺 Clinical Review</div>
+        <div class="icon-chip"><div class="dot" style="background:#F59E0B;"></div>✅ Business Acceptance</div>
+        <div class="icon-chip"><div class="dot" style="background:var(--blue);"></div>📅 Scheduling Queue</div>
+        <div class="icon-chip"><div class="dot" style="background:var(--red);"></div>🚨 Admin — Action Req.</div>
+        <div class="icon-chip"><div class="dot" style="background:#6B7280;"></div>📊 Leadership Dashboard</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ 02: PROBLEM ══════════ -->
+<section id="problem" class="fade-up">
+  <div class="section-eyebrow">02 / Problem Statement</div>
+  <h2>The <em>fragmented</em> referral journey costing lives &amp; revenue</h2>
+  <div class="two-col">
+    <div>
+      <p>
+        Home infusion therapy referrals involve up to <span class="hl">7 distinct teams</span> — clinical, financial, pharmacy, scheduling, transport, intake, and nursing — each operating in siloed, disconnected systems. The result was a chaotic, error-prone patient journey with <span class="hl-teal">no single source of truth</span>.
+      </p>
+      <p>
+        Coordinators were simultaneously juggling spreadsheets, fax machines, phone calls, and 3–4 legacy portals. Critical information — auth numbers, insurance cards, clinical flags — was frequently missing, lost, or duplicated across systems.
+      </p>
+    </div>
+    <div>
+      <div class="insight-quote">
+        <p>"I spend 40% of my day just chasing down a piece of paper or an auth number that should already be in the system."</p>
+        <span class="insight-source">— Financial Coordinator, Discovery Interview</span>
+      </div>
+      <div class="insight-quote">
+        <p>"By the time I find out there's a problem, the patient has already missed their first infusion dose."</p>
+        <span class="insight-source">— Clinical Reviewer, Discovery Interview</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="problem-grid">
+    <div class="problem-card highlight">
+      <div class="problem-icon">⏱️</div>
+      <h3>Turnaround Time Crisis</h3>
+      <p>Average TAT was <span class="hl">22+ hours</span> per referral due to manual handoffs, repeated data entry, and zero real-time status visibility across teams.</p>
+      <div class="tag-row"><span class="tag">TAT: 22h avg</span><span class="tag">Target: 8h</span></div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🔒</div>
+      <h3>No Unified Workspace</h3>
+      <p>Five separate legacy tools handled different referral stages. No shared patient record meant each team <span class="hl">re-entered the same data</span>, repeatedly.</p>
+      <div class="tag-row"><span class="tag">5 tools</span><span class="tag">4× data re-entry</span></div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📄</div>
+      <h3>Document Chaos</h3>
+      <p>Faxed referrals arrived without MRN or patient context. Staff manually matched orphan documents — <span class="hl">15–30 min per document</span>, every day.</p>
+      <div class="tag-row"><span class="tag">Orphan docs daily</span><span class="tag">Manual matching</span></div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📉</div>
+      <h3>Invisible Bottlenecks</h3>
+      <p>Supervisors had <span class="hl-teal">zero real-time visibility</span> into queue depth, SLA compliance, or exactly where referrals were stalling.</p>
+      <div class="tag-row"><span class="tag">No SLA tracking</span><span class="tag">Reactive only</span></div>
+    </div>
+  </div>
+
+  <div class="hmw">
+    <div class="hmw-label">How Might We</div>
+    <p style="color: #a5b4fc;">How might we design a unified, <em style="color: #ffffff;">automation-first</em> referral platform that gives every team role-relevant visibility and dramatically reduces manual effort — so clinicians can focus on patient care, not paperwork?</p>
+  </div>
+</section>
+
+<!-- ══════════ 03: PROCESS ══════════ -->
+<section id="process" class="fade-up">
+  <div class="section-eyebrow">03 / Process Followed</div>
+  <h2>Double Diamond with <em>continuous</em> validation</h2>
+  <p>
+    A rigorous <span class="hl">Double Diamond methodology</span> anchored every decision — from 14 stakeholder interviews and 3 days of contextual inquiry, to two rounds of lo-fi testing and a live Hi-fi pilot with real coordinators. <span class="hl-teal">No assumption went untested.</span>
+  </p>
+
+  <div class="process-steps">
+    <div class="process-step"><div class="step-dot active">01</div><div class="step-title">Discover</div><div class="step-sub">Research & field studies</div></div>
+    <div class="process-step"><div class="step-dot active">02</div><div class="step-title">Define</div><div class="step-sub">Synthesis & framing</div></div>
+    <div class="process-step"><div class="step-dot active">03</div><div class="step-title">Ideate</div><div class="step-sub">Concepts & IA</div></div>
+    <div class="process-step"><div class="step-dot active">04</div><div class="step-title">Prototype</div><div class="step-sub">Lo-fi → Hi-fi</div></div>
+    <div class="process-step"><div class="step-dot active">05</div><div class="step-title">Validate</div><div class="step-sub">Usability testing</div></div>
+  </div>
+
+  <div class="process-details">
+    <div class="process-detail">
+      <h3>🔍 Discovery (Weeks 1–3)</h3>
+      <ul>
+        <li>14 stakeholder interviews across 5 user roles</li>
+        <li>Contextual inquiry — shadowed coordinators for 3 days</li>
+        <li>Workflow mapping of current-state referral journey</li>
+        <li>Competitive audit of 6 healthcare SaaS platforms</li>
+        <li>HIPAA compliance review with legal team</li>
+      </ul>
+    </div>
+    <div class="process-detail">
+      <h3>🧭 Define (Week 4)</h3>
+      <ul>
+        <li>Affinity mapping → 6 core pain themes</li>
+        <li>5 user personas (Financial, Clinical, Acceptance, Scheduling, Supervisor)</li>
+        <li>Jobs-to-be-done framework per role</li>
+        <li>HMW statements prioritised with PM + clinical leads</li>
+      </ul>
+    </div>
+    <div class="process-detail">
+      <h3>💡 Ideation (Weeks 5–6)</h3>
+      <ul>
+        <li>Crazy-8 sketching sessions (3 workshops)</li>
+        <li>Information architecture workshops with eng + ops</li>
+        <li>AI/automation opportunity mapping</li>
+        <li>Role-based workspace concept exploration</li>
+      </ul>
+    </div>
+    <div class="process-detail">
+      <h3>🔄 Prototype + Validate (Weeks 7–12)</h3>
+      <ul>
+        <li>2 rounds of lo-fi paper prototyping (6 participants each)</li>
+        <li>Interactive Figma prototype tested via Maze</li>
+        <li>Hi-fi pilot with 4 live coordinators over 1 week</li>
+        <li>Usability metrics: task completion, error rate, time-on-task</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04: USER FLOW ══════════ -->
+<section id="userflow" class="fade-up">
+  <div class="section-eyebrow">04 / User Flow &amp; Information Architecture</div>
+  <h2>End-to-end patient journey, <em>mapped</em></h2>
+  <p>
+    The core IA decision was <span class="hl">role-based workspace separation</span> — each user lands in a tailored queue, yet the underlying patient record is unified. This reduces cognitive load while maintaining a single source of truth. Automation intercepts at every stage, handling <span class="hl-teal">94% of routine tasks</span> without coordinator intervention.
+  </p>
+
+  <div class="flow-container">
+    <div class="flow-label">End-to-End Referral Flow — 7 Stages</div>
+    <svg width="100%" viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" style="font-family:'DM Sans',sans-serif;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#0E9B8B" stroke-width="1.5" stroke-linecap="round"/>
+        </marker>
+      </defs>
+      <!-- Stage nodes -->
+      <rect x="16" y="52" width="108" height="54" rx="8" fill="#E6F7F5" stroke="#0E9B8B" stroke-width="1.2"/>
+      <text x="70" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#0B7A6D">📥 Intake</text>
+      <text x="70" y="93" text-anchor="middle" font-size="10" fill="#0E9B8B">Referral received</text>
+      <line x1="124" y1="79" x2="146" y2="79" stroke="#0E9B8B" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="148" y="52" width="112" height="54" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2"/>
+      <text x="204" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#92400E">💰 Financial</text>
+      <text x="204" y="93" text-anchor="middle" font-size="10" fill="#D97706">BI · Auth · Eligibility</text>
+      <line x1="260" y1="79" x2="282" y2="79" stroke="#0E9B8B" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="284" y="52" width="112" height="54" rx="8" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.2"/>
+      <text x="340" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#5B21B6">🩺 Clinical</text>
+      <text x="340" y="93" text-anchor="middle" font-size="10" fill="#7C3AED">Chart · AI insight</text>
+      <line x1="396" y1="79" x2="418" y2="79" stroke="#0E9B8B" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="420" y="52" width="112" height="54" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.2"/>
+      <text x="476" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#78350F">✅ Acceptance</text>
+      <text x="476" y="93" text-anchor="middle" font-size="10" fill="#D97706">Quote · Decision</text>
+      <line x1="532" y1="79" x2="554" y2="79" stroke="#0E9B8B" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="556" y="52" width="112" height="54" rx="8" fill="#E6F7F5" stroke="#0E9B8B" stroke-width="1.2"/>
+      <text x="612" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#0B7A6D">📅 Scheduling</text>
+      <text x="612" y="93" text-anchor="middle" font-size="10" fill="#0E9B8B">Admit · Transport</text>
+      <line x1="668" y1="79" x2="690" y2="79" stroke="#0E9B8B" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="692" y="52" width="108" height="54" rx="8" fill="#DCFCE7" stroke="#16A34A" stroke-width="1.2"/>
+      <text x="746" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#166534">🏥 Post-Admit</text>
+      <text x="746" y="93" text-anchor="middle" font-size="10" fill="#16A34A">Nursing · Tasks</text>
+      <line x1="800" y1="79" x2="822" y2="79" stroke="#0E9B8B" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="824" y="52" width="76" height="54" rx="8" fill="#0E9B8B" stroke="#0B7A6D" stroke-width="1.2"/>
+      <text x="862" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">✓ Done</text>
+      <text x="862" y="93" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.75)">Infusion</text>
+      <!-- Automation layer -->
+      <rect x="16" y="132" width="884" height="58" rx="8" fill="rgba(124,58,237,0.04)" stroke="rgba(124,58,237,0.18)" stroke-width="1" stroke-dasharray="5 4"/>
+      <text x="458" y="156" text-anchor="middle" font-size="12" font-weight="600" fill="#7C3AED">🤖 AI Automation Layer</text>
+      <text x="458" y="175" text-anchor="middle" font-size="11" fill="#7C3AED">AI document extraction · BI automation · Prior auth routing · Echo.ai voice · Smart assignment</text>
+      <!-- Role workspaces -->
+      <text x="16" y="222" font-size="11" font-weight="600" fill="#374151">Role-based Workspaces</text>
+      <rect x="16" y="232" width="124" height="40" rx="7" fill="#FEF3C7" stroke="#D97706" stroke-width="0.8"/>
+      <text x="78" y="249" text-anchor="middle" font-size="11" font-weight="500" fill="#92400E">Financial Queue</text>
+      <text x="78" y="264" text-anchor="middle" font-size="10" fill="#D97706">TAT · Missing docs</text>
+      <rect x="152" y="232" width="124" height="40" rx="7" fill="#EDE9FE" stroke="#7C3AED" stroke-width="0.8"/>
+      <text x="214" y="249" text-anchor="middle" font-size="11" font-weight="500" fill="#5B21B6">Clinical Queue</text>
+      <text x="214" y="264" text-anchor="middle" font-size="10" fill="#7C3AED">AI flags · Risk scores</text>
+      <rect x="288" y="232" width="124" height="40" rx="7" fill="#FEF9EE" stroke="#F59E0B" stroke-width="0.8"/>
+      <text x="350" y="249" text-anchor="middle" font-size="11" font-weight="500" fill="#78350F">Acceptance Queue</text>
+      <text x="350" y="264" text-anchor="middle" font-size="10" fill="#D97706">Quote · Decision</text>
+      <rect x="424" y="232" width="124" height="40" rx="7" fill="#E6F7F5" stroke="#0E9B8B" stroke-width="0.8"/>
+      <text x="486" y="249" text-anchor="middle" font-size="11" font-weight="500" fill="#0B7A6D">Scheduling Queue</text>
+      <text x="486" y="264" text-anchor="middle" font-size="10" fill="#0E9B8B">Admit · Transport</text>
+      <rect x="560" y="232" width="124" height="40" rx="7" fill="#FEE2E2" stroke="#DC2626" stroke-width="0.8"/>
+      <text x="622" y="249" text-anchor="middle" font-size="11" font-weight="500" fill="#991B1B">Admin Queue</text>
+      <text x="622" y="264" text-anchor="middle" font-size="10" fill="#DC2626">Exceptions · Failures</text>
+      <rect x="696" y="232" width="128" height="40" rx="7" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="0.8"/>
+      <text x="760" y="249" text-anchor="middle" font-size="11" font-weight="500" fill="#374151">Leadership Dashboard</text>
+      <text x="760" y="264" text-anchor="middle" font-size="10" fill="#9CA3AF">KPIs · Pipeline</text>
+      <!-- Unified record -->
+      <rect x="16" y="300" width="820" height="48" rx="8" fill="#111827"/>
+      <text x="426" y="320" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">🔒 Unified Patient Record</text>
+      <text x="426" y="337" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.45)">Single source of truth — MRN, insurance, meds, docs, status, TAT — HIPAA · AES-256 · SOC 2</text>
+      <!-- Patient journey tracker -->
+      <text x="16" y="380" font-size="11" font-weight="600" fill="#374151">Patient Journey Tracker — Sample</text>
+      <rect x="16" y="390" width="820" height="62" rx="8" fill="#fff" stroke="#E5E7EB" stroke-width="1"/>
+      <text x="32" y="412" font-size="11" fill="#374151" font-weight="600">Sarah Martinez · MRN-48291</text>
+      <circle cx="200" cy="430" r="9" fill="#16A34A"/>
+      <text x="200" y="434" text-anchor="middle" font-size="9" fill="#fff">✓</text>
+      <text x="200" y="447" text-anchor="middle" font-size="9" fill="#9CA3AF">Intake</text>
+      <circle cx="330" cy="430" r="9" fill="#D97706"/>
+      <text x="330" y="434" text-anchor="middle" font-size="9" fill="#fff">!</text>
+      <text x="330" y="447" text-anchor="middle" font-size="9" fill="#D97706">Financial</text>
+      <circle cx="460" cy="430" r="9" fill="#E5E7EB"/>
+      <text x="460" y="447" text-anchor="middle" font-size="9" fill="#9CA3AF">Clinical</text>
+      <circle cx="590" cy="430" r="9" fill="#E5E7EB"/>
+      <text x="590" y="447" text-anchor="middle" font-size="9" fill="#9CA3AF">Acceptance</text>
+      <circle cx="720" cy="430" r="9" fill="#E5E7EB"/>
+      <text x="720" y="447" text-anchor="middle" font-size="9" fill="#9CA3AF">Scheduling</text>
+      <line x1="209" y1="430" x2="321" y2="430" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="339" y1="430" x2="451" y2="430" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="469" y1="430" x2="581" y2="430" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="599" y1="430" x2="711" y2="430" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="32" y="448" font-size="10" fill="#DC2626">⛔ Blocked — BI Failed · Missing Auth Number</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════ 05: LO-FI ══════════ -->
+<section id="lofi" class="fade-up">
+  <div class="section-eyebrow">05 / Lo-fi Wireframes</div>
+  <h2>From rough sketches to <em>structured</em> wireframes</h2>
+  <p>
+    Two rounds of lo-fi testing with 6 coordinators each. Key learnings: supervisors needed a <span class="hl">pipeline funnel view</span>, AI recommendation needed prominent visual hierarchy, and "assign to me" needed to be <span class="hl-teal">one-click from the queue row</span> — not buried in a modal.
+  </p>
+
+  <div class="lofi-grid">
+    <div class="lofi-frame">
+      <div class="lofi-titlebar"><div class="dot-row"><span></span><span></span><span></span></div><span style="font-size:11px;color:var(--ink-4);margin-left:8px;font-family:var(--mono);">Financial Queue</span></div>
+      <div class="lofi-screen">
+        <div style="display:flex;gap:6px;margin-bottom:8px;align-items:center;"><div class="lofi-bar" style="width:50px;height:9px;margin-bottom:0;"></div><div style="flex:1;"></div><div class="lofi-bar" style="width:70px;height:22px;border-radius:5px;margin-bottom:0;background:var(--border-2);"></div></div>
+        <div class="lofi-row"><div class="lofi-bar" style="height:6px;"></div><div class="lofi-bar" style="height:6px;"></div><div class="lofi-bar" style="height:6px;"></div></div>
+        <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="padding:7px;border-bottom:1px solid var(--border);display:flex;gap:5px;align-items:center;"><div style="width:18px;height:18px;border-radius:50%;background:var(--border);flex-shrink:0;"></div><div style="flex:1;"><div class="lofi-bar short" style="height:6px;"></div><div class="lofi-bar med" style="height:5px;margin-top:3px;"></div></div><div style="width:40px;height:14px;border-radius:3px;background:var(--amber-soft);border:1px solid #FDE68A;"></div></div>
+          <div style="padding:7px;border-bottom:1px solid var(--border);display:flex;gap:5px;align-items:center;background: var(--surface);"><div style="width:18px;height:18px;border-radius:50%;background:var(--border);flex-shrink:0;"></div><div style="flex:1;"><div class="lofi-bar short" style="height:6px;"></div><div class="lofi-bar med" style="height:5px;margin-top:3px;"></div></div><div style="width:40px;height:14px;border-radius:3px;background:var(--teal-soft);"></div></div>
+          <div style="padding:7px;display:flex;gap:5px;align-items:center;"><div style="width:18px;height:18px;border-radius:50%;background:var(--border);flex-shrink:0;"></div><div style="flex:1;"><div class="lofi-bar short" style="height:6px;"></div><div class="lofi-bar med" style="height:5px;margin-top:3px;"></div></div><div style="width:40px;height:14px;border-radius:3px;background:var(--red-soft);border:1px solid #FECACA;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lofi-frame">
+      <div class="lofi-titlebar"><div class="dot-row"><span></span><span></span><span></span></div><span style="font-size:11px;color:var(--ink-4);margin-left:8px;font-family:var(--mono);">Patient Detail Panel</span></div>
+      <div class="lofi-screen">
+        <div class="lofi-row"><div style="width:24px;height:24px;border-radius:50%;background:var(--border);flex-shrink:0;"></div><div style="flex:1;"><div class="lofi-bar med" style="height:7px;"></div><div class="lofi-bar short" style="height:5px;margin-top:3px;"></div></div></div>
+        <div style="border:1px solid var(--border);border-radius:6px;padding:8px;margin:6px 0;"><div class="lofi-bar" style="height:5px;width:40%;margin-bottom:6px;"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;"><div><div class="lofi-bar" style="height:5px;width:50%;"></div><div class="lofi-bar" style="height:7px;"></div></div><div><div class="lofi-bar" style="height:5px;width:50%;"></div><div class="lofi-bar" style="height:7px;"></div></div></div></div>
+        <div style="border:1px solid rgba(220,38,38,0.2);border-radius:6px;padding:8px;margin-bottom:6px;background: rgba(220,38,38,0.1);"><div class="lofi-bar" style="height:5px;width:40%;background:rgba(220,38,38,0.15);margin-bottom:6px;"></div><div class="lofi-row"><div class="lofi-bar" style="height:22px;border-radius:5px;background:rgba(220,38,38,0.1);"></div><div style="width:28px;height:22px;border-radius:5px;background:rgba(220,38,38,0.15);flex-shrink:0;"></div></div><div class="lofi-row"><div class="lofi-bar" style="height:22px;border-radius:5px;background:rgba(220,38,38,0.1);"></div><div style="width:28px;height:22px;border-radius:5px;background:rgba(220,38,38,0.15);flex-shrink:0;"></div></div></div>
+        <div class="lofi-row" style="margin-top:8px;"><div class="lofi-bar" style="height:22px;border-radius:5px;background:var(--border-2);"></div><div style="width:70px;height:22px;border-radius:5px;background:var(--teal-soft);border:1px solid var(--teal-mid);flex-shrink:0;"></div></div>
+      </div>
+    </div>
+
+    <div class="lofi-frame">
+      <div class="lofi-titlebar"><div class="dot-row"><span></span><span></span><span></span></div><span style="font-size:11px;color:var(--ink-4);margin-left:8px;font-family:var(--mono);">Clinical Review + AI</span></div>
+      <div class="lofi-screen">
+        <div class="lofi-row"><div style="width:22px;height:22px;border-radius:50%;background:var(--border);flex-shrink:0;"></div><div style="flex:1;"><div class="lofi-bar med" style="height:7px;"></div><div class="lofi-bar short" style="height:5px;margin-top:3px;"></div></div></div>
+        <div style="background: rgba(22,163,74,0.1);border: 1px solid rgba(22,163,74,0.3);border-radius:6px;padding:8px;margin:6px 0;">
+          <div class="lofi-bar" style="height:5px;width:30%;background:rgba(22,163,74,0.2);margin-bottom:5px;"></div>
+          <div class="lofi-bar full" style="height:5px;background:rgba(22,163,74,0.12);margin-bottom:3px;"></div>
+          <div class="lofi-bar" style="height:5px;width:80%;background:rgba(22,163,74,0.12);"></div>
+          <div style="display:flex;gap:5px;margin-top:8px;"><div class="lofi-bar" style="height:20px;border-radius:5px;background:rgba(22,163,74,0.15);"></div><div class="lofi-bar" style="height:20px;border-radius:5px;background:rgba(220,38,38,0.1);"></div></div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:6px;padding:8px;"><div class="lofi-bar short" style="height:6px;margin-bottom:5px;"></div><div class="lofi-row"><div class="lofi-bar" style="height:5px;"></div><div class="lofi-bar" style="height:5px;"></div></div></div>
+      </div>
+    </div>
+
+    <div class="lofi-frame">
+      <div class="lofi-titlebar"><div class="dot-row"><span></span><span></span><span></span></div><span style="font-size:11px;color:var(--ink-4);margin-left:8px;font-family:var(--mono);">Login / Workspace Select</span></div>
+      <div class="lofi-screen">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;min-height:90px;">
+          <div style="background:#1B2A6B;padding:8px;"><div class="lofi-bar" style="height:6px;width:60%;background:rgba(255,255,255,0.2);margin-bottom:6px;"></div><div class="lofi-bar" style="height:5px;background:rgba(255,255,255,0.1);"></div><div class="lofi-bar" style="height:5px;width:70%;background:rgba(255,255,255,0.1);margin-top:3px;"></div></div>
+          <div style="background:var(--surface);padding:8px;"><div class="lofi-bar" style="height:7px;width:50%;margin-bottom:6px;"></div><div class="lofi-bar full" style="height:16px;border-radius:4px;margin-bottom:4px;"></div><div class="lofi-bar full" style="height:16px;border-radius:4px;margin-bottom:4px;"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;"><div class="lofi-box" style="height:22px;"></div><div class="lofi-box" style="height:22px;"></div><div class="lofi-box" style="height:22px;"></div><div class="lofi-box" style="height:22px;"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lofi-frame">
+      <div class="lofi-titlebar"><div class="dot-row"><span></span><span></span><span></span></div><span style="font-size:11px;color:var(--ink-4);margin-left:8px;font-family:var(--mono);">Document Upload</span></div>
+      <div class="lofi-screen">
+        <div class="lofi-bar" style="height:6px;width:50%;margin-bottom:8px;"></div>
+        <div style="border:2px dashed var(--teal-mid);border-radius:6px;padding:10px;margin-bottom:6px;text-align:center;"><div class="lofi-bar" style="height:6px;width:40%;margin:0 auto;background:rgba(14,155,139,0.15);"></div></div>
+        <div class="lofi-row"><div style="width:16px;height:16px;border-radius:3px;background:var(--border);flex-shrink:0;"></div><div class="lofi-bar" style="height:5px;margin-bottom:0;"></div><div class="lofi-bar" style="width:24px;height:14px;border-radius:3px;margin-bottom:0;background:var(--border-2);flex-shrink:0;"></div></div>
+        <div class="lofi-row" style="margin-top:8px;justify-content:flex-end;"><div class="lofi-bar" style="width:44px;height:20px;border-radius:5px;background:rgba(220,38,38,0.15);flex-shrink:0;margin-bottom:0;"></div><div class="lofi-bar" style="width:70px;height:20px;border-radius:5px;background:var(--teal-soft);border:1px solid var(--teal-mid);flex-shrink:0;margin-bottom:0;"></div></div>
+      </div>
+    </div>
+
+    <div class="lofi-frame">
+      <div class="lofi-titlebar"><div class="dot-row"><span></span><span></span><span></span></div><span style="font-size:11px;color:var(--ink-4);margin-left:8px;font-family:var(--mono);">Leadership Dashboard</span></div>
+      <div class="lofi-screen">
+        <div class="lofi-row"><div class="lofi-box" style="height:28px;flex:1;background:var(--teal-soft);border:1px solid var(--teal-mid);"></div><div class="lofi-box" style="height:28px;flex:1;"></div><div class="lofi-box" style="height:28px;flex:1;"></div><div class="lofi-box" style="height:28px;flex:1;"></div></div>
+        <div style="border:1px solid var(--border);border-radius:5px;padding:7px;margin-bottom:5px;"><div class="lofi-bar" style="height:5px;width:40%;margin-bottom:6px;"></div><div style="display:flex;flex-direction:column;gap:3px;"><div style="height:7px;background:var(--border);border-radius:3px;width:100%;"></div><div style="height:7px;background:var(--border);border-radius:3px;width:70%;"></div><div style="height:7px;background:var(--border);border-radius:3px;width:50%;"></div></div></div>
+        <div style="border:1px solid rgba(220,38,38,0.2);border-radius:5px;padding:7px;background: rgba(220,38,38,0.1);"><div class="lofi-bar" style="height:5px;width:50%;background:rgba(220,38,38,0.15);margin-bottom:5px;"></div><div class="lofi-row"><div class="lofi-bar" style="height:5px;background:rgba(220,38,38,0.08);"></div><div style="width:20px;height:14px;border-radius:3px;background:rgba(220,38,38,0.15);flex-shrink:0;"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06: HI-FI ══════════ -->
+<section id="hifi" class="fade-up">
+  <div class="section-eyebrow">06 / Hi-fi Designs</div>
+  <h2>Final screens, <em>production-ready</em></h2>
+  <p>
+    The light-theme SaaS design was chosen for a clean clinical environment — <span class="hl">high contrast</span>, teal brand trust signals, and status colors that remain <span class="hl-teal">instantly readable under any lighting condition</span>. Role-based workspaces reduce cognitive load while the slide-in detail panel preserves queue context.
+  </p>
+
+  <!-- ── SCREEN 1 ── -->
+  <!--
+    HOW TO ADD YOUR SCREENSHOT:
+    Replace the <div class="screen-placeholder"> block below with:
+    <img class="screen-img" src="your-screenshot-filename.png" alt="Login & Workspace Selection" />
+    Make sure your image file is in the same folder as this HTML file.
+  -->
+  <div class="screen-wrap">
+    <div class="screen-chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-bar">CareFlow — Login &amp; Workspace Selection</div>
+    </div>
+    <!-- PASTE YOUR SCREENSHOT HERE ↓ -->
+    <img class="screen-img" src="careflow-screens/Convert CSS to Figma Design-1.png" alt="Login & Workspace Selection" />
+  </div>
+  <div class="screen-caption">Screen 1 of 4 — Login &amp; Workspace Selection · Light Theme</div>
+
+  <!-- ── SCREEN 2 ── -->
+  <div class="screen-wrap">
+    <div class="screen-chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-bar">CareFlow — Financial Queue</div>
+    </div>
+    <!-- PASTE YOUR SCREENSHOT HERE ↓ -->
+    <img class="screen-img" src="careflow-screens/Convert CSS to Figma Design-2.png" alt="Financial Queue" />
+  </div>
+  <div class="screen-caption">Screen 2 of 4 — Financial Queue · Light Theme SaaS</div>
+
+  <!-- ── SCREEN 3 ── -->
+  <div class="screen-wrap">
+    <div class="screen-chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-bar">CareFlow — Patient Detail Panel · Financial Review · Sarah Martinez</div>
+    </div>
+    <!-- PASTE YOUR SCREENSHOT HERE ↓ -->
+    <img class="screen-img" src="careflow-screens/Convert CSS to Figma Design-3.png" alt="Patient Detail Panel" />
+  </div>
+  <div class="screen-caption">Screen 3 of 4 — Patient Detail Panel · Financial Review · Slide-in Modal</div>
+
+  <!-- ── SCREEN 4 ── -->
+  <div class="screen-wrap">
+    <div class="screen-chrome">
+      <div class="chrome-dot" style="background:#FF5F57;"></div>
+      <div class="chrome-dot" style="background:#FEBC2E;"></div>
+      <div class="chrome-dot" style="background:#28C840;"></div>
+      <div class="chrome-bar">CareFlow — Clinical Review Queue · AI Summary &amp; Recommendation</div>
+    </div>
+    <!-- PASTE YOUR SCREENSHOT HERE ↓ -->
+    <img class="screen-img" src="careflow-screens/Convert CSS to Figma Design-4.png" alt="Clinical Review Queue" />
+  </div>
+  <div class="screen-caption">Screen 4 of 4 — Clinical Review Queue · AI-Enhanced Summary &amp; Recommendation Panel</div>
+
+</section>
+
+<!-- ══════════ 07: OUTCOMES ══════════ -->
+<section class="fade-up">
+  <div class="section-eyebrow">07 / Outcomes &amp; Impact</div>
+  <h2>From <em>22 hours</em> to under 3</h2>
+  <p>
+    The pilot results exceeded every benchmark. <span class="hl">73% reduction in TAT</span> in the first week alone. More significantly, coordinators reported <span class="hl-teal">reclaiming hours of their day</span> previously lost to manual tasks — redirecting that energy back to patients.
+  </p>
+  <div class="outcomes-grid">
+    <div class="outcome-card"><div class="outcome-num">73%</div><div class="outcome-label">Reduction in average TAT — from 22h to under 6h in pilot</div></div>
+    <div class="outcome-card"><div class="outcome-num">94%</div><div class="outcome-label">Referrals auto-resolved without any coordinator intervention</div></div>
+    <div class="outcome-card"><div class="outcome-num">40%</div><div class="outcome-label">Reduction in time spent on document matching tasks</div></div>
+    <div class="outcome-card"><div class="outcome-num">4.6<span style="font-size:24px;">/5</span></div><div class="outcome-label">Coordinator satisfaction score post-launch (n=22)</div></div>
+    <div class="outcome-card"><div class="outcome-num">0</div><div class="outcome-label">HIPAA incidents recorded during entire 6-month pilot period</div></div>
+    <div class="outcome-card"><div class="outcome-num">847</div><div class="outcome-label">Referrals seamlessly managed in the first quarter on-platform</div></div>
+  </div>
+</section>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <p style="font-weight:600;font-size:14px;color:var(--ink-2);margin-bottom:6px;">CareFlow Health Platform — Case Study</p>
+  <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.05em;">🔒 HIPAA Compliant · AES-256 · SOC 2 Type II · All patient data shown is entirely fictional</p>
+  <p style="margin-top:12px;"><a href="#">← Back to Mansi Pandey's Portfolio</a></p>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
