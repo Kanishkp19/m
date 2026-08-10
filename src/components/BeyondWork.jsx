@@ -81,7 +81,9 @@ export default function BeyondWork() {
             >
               <img 
                 src={src} 
-                alt={`Beyond Work Row 1 ${idx + 1}`}
+                alt={`Beyond Work Row ${idx + 1}`}
+                loading="lazy"
+                decoding="async"
                 style={{ 
                   width: "100%", 
                   height: "100%", 
@@ -126,6 +128,8 @@ export default function BeyondWork() {
               <img 
                 src={src} 
                 alt={`Beyond Work Row 2 ${idx + 1}`}
+                loading="lazy"
+                decoding="async"
                 style={{ 
                   width: "100%", 
                   height: "100%", 
