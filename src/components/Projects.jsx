@@ -11,6 +11,7 @@ export default function Projects({ data }) {
         </h2>
         <div className="proj-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
           {data.projects.items.map((p, i) => {
+            const isFullWidth = p.fullWidth;
             const cardContent = (
               <div className="proj-card" style={{ cursor: p.link ? "pointer" : "default" }}>
                 <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 18, border: "1px solid rgba(255,255,255,0.05)" }}>
@@ -19,12 +20,24 @@ export default function Projects({ data }) {
                       className="proj-img"
                       src={p.image}
                       alt={p.title}
-                      style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover", display: "block" }}
+                      style={{
+                        width: "100%",
+                        aspectRatio: isFullWidth ? "21/9" : "16/10",
+                        objectFit: "cover",
+                        display: "block"
+                      }}
                     />
                   ) : (
                     <div
                       className="proj-img"
-                      style={{ width: "100%", aspectRatio: "16/10", background: p.gradient, display: "flex", alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        width: "100%",
+                        aspectRatio: isFullWidth ? "21/9" : "16/10",
+                        background: p.gradient || "linear-gradient(135deg, #1e1e24 0%, #2a2a36 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
                     >
                       <div style={{ background: "rgba(0,0,0,0.18)", backdropFilter: "blur(10px)", borderRadius: 14, padding: "16px 24px", textAlign: "center", border: "1px solid rgba(255,255,255,0.1)" }}>
                         <div style={{ fontSize: 26, marginBottom: 6 }}>🖥️</div>
@@ -33,7 +46,7 @@ export default function Projects({ data }) {
                     </div>
                   )}
                 </div>
-                <h3 style={{ fontSize: "clamp(15px,1.6vw,18px)", fontWeight: 600, color: dark, marginBottom: 5 }}>
+                <h3 style={{ fontSize: isFullWidth ? "clamp(18px,2vw,22px)" : "clamp(15px,1.6vw,18px)", fontWeight: 600, color: dark, marginBottom: 5 }}>
                   {p.title}
                   {p.link && <span style={{ fontSize: 14, marginLeft: 8, color: "rgba(255,255,255,0.5)" }}>↗</span>}
                 </h3>
@@ -42,11 +55,22 @@ export default function Projects({ data }) {
             );
 
             return p.link ? (
-              <a key={i} href={p.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+              <a
+                key={i}
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  display: "block",
+                  gridColumn: isFullWidth ? "1 / -1" : "auto"
+                }}
+              >
                 {cardContent}
               </a>
             ) : (
-              <div key={i}>
+              <div key={i} style={{ gridColumn: isFullWidth ? "1 / -1" : "auto" }}>
                 {cardContent}
               </div>
             );

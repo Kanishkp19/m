@@ -44,10 +44,9 @@ export const defaultData = {
   projects: {
     heading: "Projects I've worked on",
     items: [
+      { title: "Designing for a Multilingual India", subtitle: "Language-First Product Design · AI & Accessibility", image: "/projects/5.png", gradient: "linear-gradient(135deg, #4A3FD6 0%, #1E8E5F 50%, #E08A2C 100%)", link: "/case-study/index (1).html", fullWidth: true },
       { title: "Ontology Builder", subtitle: "Enterprise Analytics · Knowledge Graphs", image: "/projects/2.png", gradient: "linear-gradient(135deg, #c8d8e8 0%, #b0c0d8 50%, #c8c0d8 100%)", link: "/ontology-builder-case-study.html" },
       { title: "CareFlow", subtitle: "Healthcare UX · Patient Management", image: "/projects/1.png", gradient: "linear-gradient(135deg, #e8d8c8 0%, #d8c0b0 50%, #c8b8a8 100%)", link: "/careflow-case-study.html" },
-      { title: "LinguaVideo", subtitle: "Education Tech · Video Learning", image: "/projects/3.png", gradient: "linear-gradient(135deg, #c8d8c8 0%, #b8c8b0 50%, #a8b8a0 100%)", link: "/linguavideo-case-study.html" },
-      { title: "VoiceVerse", subtitle: "AI Voice · Creative Platform", image: "/projects/4.png", gradient: "linear-gradient(135deg, #d8c8d8 0%, #c8b0c8 50%, #b8a8c0 100%)", link: "/voiceverse-case-study.html" },
     ],
   },
   skills: {
