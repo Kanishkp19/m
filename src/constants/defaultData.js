@@ -16,7 +16,7 @@ export const defaultData = {
     instagram: "https://www.instagram.com/not_so_simple_mansi?igsh=MWhyenZ3a3piMTc1cQ%3D%3D&utm_source=qr",
     twitter: "#",
   },
-  resume: { file: null, filename: "" },
+  resume: { file: "/resume.pdf", filename: "Mansi_Pandey_Resume.pdf" },
   services: {
     heading: "Everything your brand\nneeds to show up right",
     items: [
