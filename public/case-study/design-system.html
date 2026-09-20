@@ -1663,34 +1663,18 @@ code.inline{ font-family:var(--font-mono); font-size:12.5px; background:var(--bg
       <h2>Designs</h2>
       <p>Real screens built with this system, shown on a laptop frame. Drop a screenshot into any slot below to preview it in context.</p>
     </div>
-    <div class="grid-2" id="laptopGrid" style="gap:var(--space-10);">
+    <div id="laptopGrid" style="max-width:880px; margin:0 auto;">
 
       <div class="laptop-mockup" data-slot="1">
         <div class="laptop-screen">
           <div class="laptop-bezel-cam"></div>
-          <div class="laptop-canvas empty" onclick="document.getElementById('fileInput1').click();">
-            <div class="laptop-empty-icon">🖥</div>
-            <div class="laptop-empty-title">Add a design</div>
-            <div class="laptop-empty-sub">Click to upload a screenshot (PNG/JPG)</div>
+          <div class="laptop-canvas" onclick="document.getElementById('fileInput1').click();" style="background:#f5f9fd; cursor:pointer;">
+            <img src="/case-study/confidential-project.png" alt="Confidential Project" style="width:100%; height:100%; object-fit:contain; display:block;">
             <input type="file" id="fileInput1" accept="image/*" style="display:none;" onchange="loadMockup(this,1)">
           </div>
         </div>
         <div class="laptop-base"><div class="laptop-notch"></div></div>
-        <div class="laptop-caption">Slot 1 — e.g. Web dashboard</div>
-      </div>
-
-      <div class="laptop-mockup" data-slot="2">
-        <div class="laptop-screen">
-          <div class="laptop-bezel-cam"></div>
-          <div class="laptop-canvas empty" onclick="document.getElementById('fileInput2').click();">
-            <div class="laptop-empty-icon">🖥</div>
-            <div class="laptop-empty-title">Add a design</div>
-            <div class="laptop-empty-sub">Click to upload a screenshot (PNG/JPG)</div>
-            <input type="file" id="fileInput2" accept="image/*" style="display:none;" onchange="loadMockup(this,2)">
-          </div>
-        </div>
-        <div class="laptop-base"><div class="laptop-notch"></div></div>
-        <div class="laptop-caption">Slot 2 — e.g. Enterprise console</div>
+        <div class="laptop-caption">Confidential Project — NDA Protected</div>
       </div>
 
     </div>
